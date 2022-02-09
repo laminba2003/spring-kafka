@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class Runner implements CommandLineRunner {
 
-    private final KafkaSender sender;
+    private final Sender sender;
     private final Receiver receiver;
 
     @Override
