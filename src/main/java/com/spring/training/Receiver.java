@@ -16,12 +16,11 @@ import org.springframework.stereotype.Service;
 public class Receiver {
 
     @KafkaHandler
-    public void consume(@Payload String input, @Header(KafkaHeaders.OFFSET) String offset){
-        log.info(" offset: " + offset + "Incoming info: "+input);
+    public void consume(@Payload String payload, @Header(KafkaHeaders.OFFSET) String offset){
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            Message message = mapper.readValue(input, Message.class);
-            log.info("Message  :"+message);
+            log.info("offset: " + offset + " -- payload: "+payload);
+            Message message = new ObjectMapper().readValue(payload, Message.class);
+            log.info("message received  : "+message);
         } catch (JsonProcessingException e) {
             log.error(e.getMessage());
         }
