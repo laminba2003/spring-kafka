@@ -1,17 +1,30 @@
 package com.spring.training;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 @Service
+@KafkaListener(topics = Application.kafkaTopic)
+@Slf4j
 public class Receiver {
 
-    @KafkaListener(topics = Application.kafkaTopic)
-    public void receiveMessage(Message message) {
-        System.out.println("message received...");
-        System.out.println("message from "+message.getFrom());
-        System.out.println("message to "+message.getTo());
-        System.out.println("message content "+message.getContent());
+    @KafkaHandler
+    public void consume(@Payload String input, @Header(KafkaHeaders.OFFSET) String offset){
+        log.info(" offset: " + offset + "Incoming info: "+input);
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            Message message = mapper.readValue(input, Message.class);
+            log.info("Message  :"+message);
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage());
+        }
     }
 
 }
