@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class Runner implements CommandLineRunner {
 
-    private final Sender sender;
+    final Sender sender;
 
     @Override
     public void run(String... args) {

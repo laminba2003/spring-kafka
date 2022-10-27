@@ -12,7 +12,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @AllArgsConstructor
 public class ApplicationConfig implements KafkaListenerConfigurer {
 
-    static final String kafkaTopic = "javainuse";
+    static final String KAFKA_TOPIC = "javainuse";
 
     LocalValidatorFactoryBean validator;
 
@@ -20,4 +20,5 @@ public class ApplicationConfig implements KafkaListenerConfigurer {
     public void configureKafkaListeners(KafkaListenerEndpointRegistrar registrar) {
         registrar.setValidator(validator);
     }
+
 }
