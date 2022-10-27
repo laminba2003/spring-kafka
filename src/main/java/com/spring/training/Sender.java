@@ -11,7 +11,7 @@ public class Sender {
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public void send(Message message) {
-        kafkaTemplate.send(Application.kafkaTopic, message);
+        kafkaTemplate.send(ApplicationConfig.kafkaTopic, message);
     }
 
 }
