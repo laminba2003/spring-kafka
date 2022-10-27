@@ -47,7 +47,7 @@ public class ApplicationConfig implements KafkaListenerConfigurer {
         factory.setCommonErrorHandler(new CommonErrorHandler() {
             @Override
             public void handleRecord(Exception exception, ConsumerRecord<?, ?> record, Consumer<?, ?> consumer, MessageListenerContainer container) {
-                if (exception.getCause() != null && exception.getCause() instanceof DeserializationException) {
+                if (exception.getCause() instanceof DeserializationException) {
                     DeserializationException deserializationException = (DeserializationException) exception.getCause();
                     log.error("cannot deserialize messsage with payload : {} ", new String(deserializationException.getData()));
                 }
