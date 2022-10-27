@@ -17,6 +17,7 @@ import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.support.serializer.DeserializationException;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+@SuppressWarnings("ALL")
 @Configuration
 @Slf4j
 @AllArgsConstructor
@@ -40,7 +41,7 @@ public class ApplicationConfig implements KafkaListenerConfigurer {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<Object, Object> kafkaListenerContainerFactory(
+    public ConcurrentKafkaListenerContainerFactory kafkaListenerContainerFactory(
             ConcurrentKafkaListenerContainerFactoryConfigurer configurer, ConsumerFactory<Object, Object> consumerFactory) {
         ConcurrentKafkaListenerContainerFactory factory = new ConcurrentKafkaListenerContainerFactory<>();
         configurer.configure(factory, consumerFactory);
