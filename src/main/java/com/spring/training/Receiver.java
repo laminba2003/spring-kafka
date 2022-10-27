@@ -12,7 +12,7 @@ public class Receiver {
 
     @KafkaListener(topics = ApplicationConfig.kafkaTopic)
     public void consume(@Payload @Valid Message message) {
-        log.info("message received  : " + message);
+        log.info("message received  : {} ", message);
     }
 
 }
