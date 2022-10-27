@@ -10,7 +10,7 @@ import javax.validation.Valid;
 @Slf4j
 public class Receiver {
 
-    @KafkaListener(topics = ApplicationConfig.KAFKA_TOPIC)
+    @KafkaListener(topics = ApplicationConfig.KAFKA_TOPIC, errorHandler = "validationErrorHandler")
     public void consume(@Payload @Valid Message message) {
         log.info("message received  : {} ", message);
     }
