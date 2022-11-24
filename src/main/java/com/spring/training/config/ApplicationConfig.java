@@ -17,7 +17,6 @@ import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.support.serializer.DeserializationException;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-@SuppressWarnings("ALL")
 @Configuration
 @Slf4j
 @AllArgsConstructor
