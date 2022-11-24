@@ -1,4 +1,4 @@
-package com.spring.training;
+package com.spring.training.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

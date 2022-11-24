@@ -1,4 +1,4 @@
-package com.spring.training;
+package com.spring.training.config;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @AllArgsConstructor
 public class ApplicationConfig implements KafkaListenerConfigurer {
 
-    static final String KAFKA_TOPIC = "javainuse";
+    public static final String KAFKA_TOPIC = "javainuse";
 
     LocalValidatorFactoryBean validator;
 
@@ -51,6 +51,7 @@ public class ApplicationConfig implements KafkaListenerConfigurer {
                 if (exception.getCause() instanceof DeserializationException) {
                     DeserializationException deserializationException = (DeserializationException) exception.getCause();
                     log.error("cannot deserialize messsage with payload : {} ", new String(deserializationException.getData()));
+                    deserializationException.printStackTrace();
                 }
             }
         });
