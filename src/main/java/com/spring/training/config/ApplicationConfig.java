@@ -22,9 +22,9 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @AllArgsConstructor
 public class ApplicationConfig implements KafkaListenerConfigurer {
 
-    public static final String KAFKA_TOPIC = "javainuse";
+    public static final String KAFKA_TOPIC = "messages";
 
-    LocalValidatorFactoryBean validator;
+    final LocalValidatorFactoryBean validator;
 
     @Override
     public void configureKafkaListeners(KafkaListenerEndpointRegistrar registrar) {
@@ -34,7 +34,7 @@ public class ApplicationConfig implements KafkaListenerConfigurer {
     @Bean
     public KafkaListenerErrorHandler validationErrorHandler() {
         return (message, exception) -> {
-            log.error("validation occured with {} ", message);
+            log.error("validation error occurred with {} ", message);
             return message;
         };
     }
@@ -42,15 +42,14 @@ public class ApplicationConfig implements KafkaListenerConfigurer {
     @Bean
     public ConcurrentKafkaListenerContainerFactory kafkaListenerContainerFactory(
             ConcurrentKafkaListenerContainerFactoryConfigurer configurer, ConsumerFactory<Object, Object> consumerFactory) {
-        ConcurrentKafkaListenerContainerFactory factory = new ConcurrentKafkaListenerContainerFactory<>();
+        ConcurrentKafkaListenerContainerFactory<Object, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
         configurer.configure(factory, consumerFactory);
         factory.setCommonErrorHandler(new CommonErrorHandler() {
             @Override
             public void handleRecord(Exception exception, ConsumerRecord<?, ?> record, Consumer<?, ?> consumer, MessageListenerContainer container) {
                 if (exception.getCause() instanceof DeserializationException) {
                     DeserializationException deserializationException = (DeserializationException) exception.getCause();
-                    log.error("cannot deserialize messsage with payload : {} ", new String(deserializationException.getData()));
-                    deserializationException.printStackTrace();
+                    log.error("cannot deserialize message with payload : {} ", new String(deserializationException.getData()));
                 }
             }
         });

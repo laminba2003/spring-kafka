@@ -1,0 +1,19 @@
+{
+  "namespace": "com.spring.training.model",
+  "type": "record",
+  "name": "Message",
+  "fields": [
+    {
+      "name": "from",
+      "type": "string"
+    },
+    {
+      "name": "to",
+      "type": "string"
+    },
+    {
+      "name": "content",
+      "type": "string"
+    }
+  ]
+}
