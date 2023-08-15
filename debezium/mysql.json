@@ -8,7 +8,7 @@
     "database.user": "root",
     "database.password": "root",
     "database.server.id": "1",
-    "database.server.name": "my_database",
+    "database.server.name": "my_server",
     "snapshot.mode": "schema_only",
     "topic.prefix": "debezium",
     "schema.history.internal.kafka.topic": "my_database_schema_history_topic",
