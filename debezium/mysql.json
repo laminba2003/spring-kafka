@@ -1,0 +1,17 @@
+{
+  "name": "mysql_datasource",
+  "config": {
+    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+    "tasks.max": "1",
+    "database.hostname": "mysql",
+    "database.port": "3306",
+    "database.user": "root",
+    "database.password": "root",
+    "database.server.id": "1",
+    "database.server.name": "my_database",
+    "snapshot.mode": "schema_only",
+    "topic.prefix": "debezium",
+    "schema.history.internal.kafka.topic": "my_database_schema_history_topic",
+    "schema.history.internal.kafka.bootstrap.servers": "broker:29092"
+  }
+}
