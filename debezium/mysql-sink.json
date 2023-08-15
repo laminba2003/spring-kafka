@@ -7,6 +7,9 @@
     "connector.class" : "io.debezium.connector.jdbc.JdbcSinkConnector",
     "name" : "mysql-sink",
     "schema.evolution" : "basic",
+    "delete.enabled": "true",
+    "primary.key.mode": "record_key",
+    "primary.key.fields": "id",
     "topics" : "debezium.my_database.students"
   }
 }

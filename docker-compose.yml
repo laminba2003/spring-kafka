@@ -57,8 +57,9 @@ services:
       CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
       STATUS_STORAGE_TOPIC: docker-connect-status
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
-      KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
+      KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
       VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
     volumes:
       - ./libs/avro/kafka-connect-avro-converter-7.4.0.jar:/kafka/libs/kafka-connect-avro-converter-7.4.0.jar
