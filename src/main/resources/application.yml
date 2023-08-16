@@ -4,9 +4,13 @@ spring:
             group-id: group-id
             key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
             value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+            properties:
+                interceptor.classes: com.spring.training.interceptor.MessageConsumerInterceptor
         producer:
             key-serializer: org.apache.kafka.common.serialization.StringSerializer
             value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+            properties:
+                interceptor.classes: com.spring.training.interceptor.MessageProducerInterceptor
         properties:
             spring.json.trusted.packages: '*'
             spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer

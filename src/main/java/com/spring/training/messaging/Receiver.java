@@ -13,7 +13,7 @@ public class Receiver {
 
     @KafkaListener(topics = ApplicationConfig.KAFKA_TOPIC, errorHandler = "validationErrorHandler")
     public void consume(@Payload Message message) {
-        log.info("message received  : {} ", message);
+        log.info("message consumed with payload : {} ", message);
     }
 
 }
