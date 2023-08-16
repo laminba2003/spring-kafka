@@ -18,4 +18,8 @@ public class Sender {
         template.send(record);
     }
 
+    public void send(Message message) {
+        send(null, message);
+    }
+
 }
