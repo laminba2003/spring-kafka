@@ -12,8 +12,6 @@ spring:
             properties:
                 interceptor.classes: com.spring.training.interceptor.MessageProducerInterceptor
         properties:
-            spring.json.trusted.packages: '*'
             spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
             spring.deserializer.value.delegate.class: io.confluent.kafka.serializers.KafkaAvroDeserializer
             schema.registry.url: http://localhost:8081
-            specific.avro.reader: true
