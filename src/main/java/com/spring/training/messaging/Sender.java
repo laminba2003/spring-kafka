@@ -13,8 +13,8 @@ public class Sender {
 
     final KafkaTemplate<String, Message> template;
 
-    public void send(Message message) {
-        ProducerRecord<String, Message> record = new ProducerRecord<>(ApplicationConfig.KAFKA_TOPIC, message.getFrom(), message);
+    public void send(String key, Message message) {
+        ProducerRecord<String, Message> record = new ProducerRecord<>(ApplicationConfig.KAFKA_TOPIC, key, message);
         template.send(record);
     }
 

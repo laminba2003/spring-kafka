@@ -13,8 +13,8 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Message message = new Message("laminba2003@gmail.com","moussa@gmail.com","this is a test");
-        sender.send(message);
+        Message message = new Message("laminba2003@gmail.com", "moussa@gmail.com", "this is a test");
+        sender.send(message.getFrom(), message);
     }
 
 }
