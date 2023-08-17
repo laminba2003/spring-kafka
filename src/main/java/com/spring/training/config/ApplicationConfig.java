@@ -29,6 +29,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import java.util.HashMap;
 import java.util.Map;
 
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.*;
 
 @Configuration
@@ -71,15 +72,21 @@ public class ApplicationConfig implements KafkaListenerConfigurer {
     }
 
     @Bean
+    public StreamProperties streamProperties() {
+        return new StreamProperties();
+    }
+
+    @Bean
     public KafkaStreamsConfiguration kStreamsConfig() {
         Map<String, Object> props = new HashMap<>();
-        props.put(APPLICATION_ID_CONFIG, "spring-app");
-        props.put(BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        StreamProperties streamProperties = streamProperties();
+        props.put(APPLICATION_ID_CONFIG, streamProperties.get(APPLICATION_ID_CONFIG));
+        props.put(BOOTSTRAP_SERVERS_CONFIG, streamProperties.get(BOOTSTRAP_SERVERS_CONFIG));
         props.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         props.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put("schema.registry.url", "http://localhost:8081");
-        props.put(NUM_STREAM_THREADS_CONFIG, 1);
-        props.put(REPLICATION_FACTOR_CONFIG, 1);
+        props.put(SCHEMA_REGISTRY_URL_CONFIG, streamProperties.get(SCHEMA_REGISTRY_URL_CONFIG));
+        props.put(NUM_STREAM_THREADS_CONFIG, streamProperties.get(NUM_STREAM_THREADS_CONFIG));
+        props.put(REPLICATION_FACTOR_CONFIG, streamProperties.get(REPLICATION_FACTOR_CONFIG));
         return new KafkaStreamsConfiguration(props);
     }
 

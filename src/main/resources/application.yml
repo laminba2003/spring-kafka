@@ -15,3 +15,11 @@ spring:
             spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
             spring.deserializer.value.delegate.class: io.confluent.kafka.serializers.KafkaAvroDeserializer
             schema.registry.url: http://localhost:8081
+        bootstrap-servers: localhost:9092
+        streams:
+            properties:
+                bootstrap.servers: localhost:9092
+                application.id: spring-app
+                schema.registry.url: http://localhost:8081
+                num.stream.threads: 1
+                replication.factor: 1
