@@ -18,7 +18,6 @@ public class MessagingController {
 
     final Sender sender;
 
-
     @PostMapping
     public void sendMessage(@RequestBody @Valid MessageDto messageDto) {
         Message message = Message.newBuilder()
