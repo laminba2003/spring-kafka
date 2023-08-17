@@ -18,6 +18,13 @@ The key terminologies of Kafka are the following:
 - Partition: Messages published to a topic are spread across a Kafka cluster into several partitions. Each partition can be associated with a broker to allow consumers to read from a topic in parallel.
 - Offset: Offset is a pointer to the last message that Kafka has already sent to a consumer.
 
+## Kafka Connect
+
+Kafka Connect is a tool for scalable and reliable streaming data between Apache Kafka and other systems. It makes it simple to quickly define connectors that move large collections of data into and out of Kafka. Kafka Connect can ingest entire databases or collect metrics from all your application servers into Kafka topics, making the data available for stream processing with low latency. An export job can deliver data from Kafka topics into secondary storage and query systems or into batch systems for offline analysis.
+
+## Kafka Streams
+
+Kafka Streams is a client library for building applications and microservices, where the input and output data are stored in Kafka clusters. It combines the simplicity of writing and deploying standard Java and Scala applications on the client side with the benefits of Kafka's server-side cluster technology.
 
 ## Start the Kafka broker
 
