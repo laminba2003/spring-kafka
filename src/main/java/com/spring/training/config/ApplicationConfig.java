@@ -78,16 +78,16 @@ public class ApplicationConfig implements KafkaListenerConfigurer {
 
     @Bean
     public KafkaStreamsConfiguration kStreamsConfig() {
-        Map<String, Object> props = new HashMap<>();
+        Map<String, Object> configs = new HashMap<>();
         StreamProperties streamProperties = streamProperties();
-        props.put(APPLICATION_ID_CONFIG, streamProperties.get(APPLICATION_ID_CONFIG));
-        props.put(BOOTSTRAP_SERVERS_CONFIG, streamProperties.get(BOOTSTRAP_SERVERS_CONFIG));
-        props.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
-        props.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put(SCHEMA_REGISTRY_URL_CONFIG, streamProperties.get(SCHEMA_REGISTRY_URL_CONFIG));
-        props.put(NUM_STREAM_THREADS_CONFIG, streamProperties.get(NUM_STREAM_THREADS_CONFIG));
-        props.put(REPLICATION_FACTOR_CONFIG, streamProperties.get(REPLICATION_FACTOR_CONFIG));
-        return new KafkaStreamsConfiguration(props);
+        configs.put(APPLICATION_ID_CONFIG, streamProperties.get(APPLICATION_ID_CONFIG));
+        configs.put(BOOTSTRAP_SERVERS_CONFIG, streamProperties.get(BOOTSTRAP_SERVERS_CONFIG));
+        configs.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+        configs.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
+        configs.put(SCHEMA_REGISTRY_URL_CONFIG, streamProperties.get(SCHEMA_REGISTRY_URL_CONFIG));
+        configs.put(NUM_STREAM_THREADS_CONFIG, streamProperties.get(NUM_STREAM_THREADS_CONFIG));
+        configs.put(REPLICATION_FACTOR_CONFIG, streamProperties.get(REPLICATION_FACTOR_CONFIG));
+        return new KafkaStreamsConfiguration(configs);
     }
 
     @Bean
@@ -97,7 +97,7 @@ public class ApplicationConfig implements KafkaListenerConfigurer {
 
     @Bean
     public KStream<String, Message> processMessages(StreamsBuilder builder) {
-        KStream<String, Message> source = builder.stream(ApplicationConfig.KAFKA_TOPIC);
+        KStream<String, Message> source = builder.stream(KAFKA_TOPIC);
         source.map((key, value) -> KeyValue.pair(value.getFrom(), value.getContent()))
                 .to("process-messages", Produced.with(Serdes.String(), Serdes.String()));
         return source;
