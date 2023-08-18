@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class Sender {
+public class Producer {
 
     final KafkaTemplate<String, Message> template;
 
-    public void send(String key, Message message) {
+    public void produce(String key, Message message) {
         ProducerRecord<String, Message> record = new ProducerRecord<>(ApplicationConfig.KAFKA_TOPIC, key, message);
         template.send(record);
     }
 
-    public void send(Message message) {
-        send(null, message);
+    public void produce(Message message) {
+        produce(null, message);
     }
 
 }

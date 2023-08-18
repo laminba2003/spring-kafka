@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class Runner implements CommandLineRunner {
 
-    final Sender sender;
+    final Producer producer;
 
     @Override
     public void run(String... args) {
         Message message = new Message("laminba2003@gmail.com", "moussa@gmail.com", "this is a test");
-        sender.send(message.getFrom(), message);
+        producer.produce(message.getFrom(), message);
     }
 
 }

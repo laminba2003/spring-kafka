@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Service
 @Slf4j
-public class Receiver {
+public class Consumer {
 
     @KafkaListener(topics = ApplicationConfig.KAFKA_TOPIC, errorHandler = "validationErrorHandler")
     public void consume(ConsumerRecord<String, Message> record) {

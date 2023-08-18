@@ -1,7 +1,7 @@
 package com.spring.training.controller;
 
 import com.spring.training.dto.MessageDto;
-import com.spring.training.messaging.Sender;
+import com.spring.training.messaging.Producer;
 import com.spring.training.model.Message;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @AllArgsConstructor
 public class MessagingController {
 
-    final Sender sender;
+    final Producer producer;
 
     @PostMapping
     public void sendMessage(@RequestBody @Valid MessageDto messageDto) {
@@ -24,7 +24,7 @@ public class MessagingController {
                 .setFrom(messageDto.getFrom())
                 .setTo(messageDto.getTo())
                 .setContent(messageDto.getContent()).build();
-        sender.send(message);
+        producer.produce(message);
     }
 
 }
