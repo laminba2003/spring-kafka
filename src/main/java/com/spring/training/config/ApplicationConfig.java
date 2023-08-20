@@ -23,7 +23,7 @@ public class ApplicationConfig {
     @Bean
     public KafkaListenerErrorHandler validationErrorHandler() {
         return (message, exception) -> {
-            log.error("validation error occurred with {} ", message);
+            log.error("validation error occurred with payload : {} and error message : {} ", message, exception.getMessage());
             return message;
         };
     }
