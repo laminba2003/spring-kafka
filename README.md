@@ -26,6 +26,13 @@ Kafka Connect is a tool for scalable and reliable streaming data between Apache 
 
 Kafka Streams is a client library for building applications and microservices, where the input and output data are stored in Kafka clusters. It combines the simplicity of writing and deploying standard Java and Scala applications on the client side with the benefits of Kafka's server-side cluster technology.
 
+## KsqlDB
+
+ksqlDB greatly reduces the operational complexity required to build stream processing applications, which enables you to build real-time systems without
+requiring significant time and overhead. It combines the power of real-time stream processing with the approachable feel of a database, through
+a familiar, lightweight SQL syntax. And because ksqlDB is natively powered by Apache Kafka®, it seamlessly leverages the underlying, battle-tested event
+streaming platform.
+
 ## Start the Kafka broker
 
 run this command to start all services in the correct order.

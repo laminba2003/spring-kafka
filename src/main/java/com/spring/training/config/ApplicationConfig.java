@@ -32,8 +32,8 @@ public class ApplicationConfig {
     public ConcurrentKafkaListenerContainerFactory kafkaListenerContainerFactory(
             ConcurrentKafkaListenerContainerFactoryConfigurer configurer, ConsumerFactory<Object, Object> consumerFactory) {
         ConcurrentKafkaListenerContainerFactory<Object, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        configurer.configure(factory, consumerFactory);
         factory.setCommonErrorHandler(new ErrorHandler());
+        configurer.configure(factory, consumerFactory);
         return factory;
     }
 
