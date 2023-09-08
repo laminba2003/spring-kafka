@@ -13,7 +13,7 @@ import java.util.Date;
 @Slf4j
 public class Consumer {
 
-    @KafkaListener(topics = ApplicationConfig.KAFKA_TOPIC, errorHandler = "validationErrorHandler")
+    @KafkaListener(topics = ApplicationConfig.KAFKA_TOPIC)
     public void consume(ConsumerRecord<String, Message> record) {
         log.info("message consumed from topic : {} and partition : {} at offset : {} with key : {}, payload : {} and timestamp : {}"
                 , record.topic(), record.partition(), record.offset(), record.key(), record.value(), new Date(record.timestamp()));
